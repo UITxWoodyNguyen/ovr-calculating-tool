@@ -1,0 +1,275 @@
+{
+  "positions": [
+    {
+      "code": "GK",
+      "nameVi": "Thủ môn",
+      "groupLabel": "GK",
+      "stats": {
+        "reflexes": 17,
+        "handling": 14,
+        "diving": 13,
+        "positioning": 13,
+        "kicking": 8,
+        "throwing": 7,
+        "rushing": 6,
+        "oneOnOnes": 6,
+        "aerial": 5,
+        "command": 5,
+        "communication": 4,
+        "penaltySaving": 2
+      }
+    },
+    {
+      "code": "CB",
+      "nameVi": "Trung vệ",
+      "groupLabel": "DF",
+      "stats": {
+        "marking": 17,
+        "tackling": 14,
+        "interceptions": 13,
+        "heading": 13,
+        "strength": 8,
+        "aggression": 7,
+        "positioning": 6,
+        "composure": 6,
+        "standingTackle": 5,
+        "slidingTackle": 5,
+        "jumping": 4,
+        "stamina": 2
+      }
+    },
+    {
+      "code": "LB",
+      "nameVi": "Hậu vệ trái",
+      "groupLabel": "DF",
+      "stats": {
+        "pace": 17,
+        "stamina": 14,
+        "crossing": 13,
+        "dribbling": 13,
+        "tackling": 8,
+        "interceptions": 7,
+        "marking": 6,
+        "positioning": 6,
+        "shortPass": 5,
+        "vision": 5,
+        "ballControl": 4,
+        "strength": 2
+      }
+    },
+    {
+      "code": "RB",
+      "nameVi": "Hậu vệ phải",
+      "groupLabel": "DF",
+      "stats": {
+        "pace": 17,
+        "stamina": 14,
+        "crossing": 13,
+        "dribbling": 13,
+        "tackling": 8,
+        "interceptions": 7,
+        "marking": 6,
+        "positioning": 6,
+        "shortPass": 5,
+        "vision": 5,
+        "ballControl": 4,
+        "strength": 2
+      }
+    },
+    {
+      "code": "CDM",
+      "nameVi": "Tiền vệ trung tâm phòng ngự",
+      "groupLabel": "MF",
+      "stats": {
+        "interceptions": 17,
+        "marking": 14,
+        "tackling": 13,
+        "shortPass": 13,
+        "vision": 8,
+        "ballControl": 7,
+        "composure": 6,
+        "positioning": 6,
+        "longPass": 5,
+        "stamina": 5,
+        "strength": 4,
+        "aggression": 2
+      }
+    },
+    {
+      "code": "CM",
+      "nameVi": "Tiền vệ trung tâm",
+      "groupLabel": "MF",
+      "stats": {
+        "shortPass": 17,
+        "vision": 14,
+        "ballControl": 13,
+        "dribbling": 13,
+        "longPass": 8,
+        "stamina": 7,
+        "shotPower": 6,
+        "finishing": 6,
+        "curve": 5,
+        "positioning": 5,
+        "interceptions": 4,
+        "strength": 2
+      }
+    },
+    {
+      "code": "CAM",
+      "nameVi": "Tiền vệ tấn công",
+      "groupLabel": "MF",
+      "stats": {
+        "vision": 17,
+        "ballControl": 14,
+        "shortPass": 13,
+        "dribbling": 13,
+        "finishing": 8,
+        "curve": 7,
+        "longPass": 6,
+        "shotPower": 6,
+        "positioning": 5,
+        "composure": 5,
+        "fkAccuracy": 4,
+        "stamina": 2
+      }
+    },
+    {
+      "code": "LM",
+      "nameVi": "Tiền vệ cánh trái",
+      "groupLabel": "MF",
+      "stats": {
+        "pace": 17,
+        "dribbling": 14,
+        "crossing": 13,
+        "ballControl": 13,
+        "vision": 8,
+        "shortPass": 7,
+        "curve": 6,
+        "finishing": 6,
+        "stamina": 5,
+        "composure": 5,
+        "longPass": 4,
+        "strength": 2
+      }
+    },
+    {
+      "code": "RM",
+      "nameVi": "Tiền vệ cánh phải",
+      "groupLabel": "MF",
+      "stats": {
+        "pace": 17,
+        "dribbling": 14,
+        "crossing": 13,
+        "ballControl": 13,
+        "vision": 8,
+        "shortPass": 7,
+        "curve": 6,
+        "finishing": 6,
+        "stamina": 5,
+        "composure": 5,
+        "longPass": 4,
+        "strength": 2
+      }
+    },
+    {
+      "code": "LW",
+      "nameVi": "Tiền đạo cánh trái",
+      "groupLabel": "FW",
+      "stats": {
+        "pace": 17,
+        "dribbling": 14,
+        "finishing": 13,
+        "ballControl": 13,
+        "shotPower": 8,
+        "composure": 7,
+        "curve": 6,
+        "positioning": 6,
+        "shortPass": 5,
+        "vision": 5,
+        "longPass": 4,
+        "strength": 2
+      }
+    },
+    {
+      "code": "RW",
+      "nameVi": "Tiền đạo cánh phải",
+      "groupLabel": "FW",
+      "stats": {
+        "pace": 17,
+        "dribbling": 14,
+        "finishing": 13,
+        "ballControl": 13,
+        "shotPower": 8,
+        "composure": 7,
+        "curve": 6,
+        "positioning": 6,
+        "shortPass": 5,
+        "vision": 5,
+        "longPass": 4,
+        "strength": 2
+      }
+    },
+    {
+      "code": "ST",
+      "nameVi": "Tiền đạo trung tâm",
+      "groupLabel": "FW",
+      "stats": {
+        "finishing": 17,
+        "positioning": 14,
+        "shotPower": 13,
+        "composure": 13,
+        "heading": 8,
+        "pace": 7,
+        "ballControl": 6,
+        "strength": 6,
+        "dribbling": 5,
+        "vision": 5,
+        "shortPass": 4,
+        "jumping": 2
+      }
+    }
+  ],
+  "statDefinitions": [
+    { "code": "pace", "nameVi": "Tốc độ", "category": "outfield" },
+    { "code": "acceleration", "nameVi": "Tăng tốc", "category": "outfield" },
+    { "code": "finishing", "nameVi": "Dứt điểm", "category": "outfield" },
+    { "code": "shotPower", "nameVi": "Lực sút", "category": "outfield" },
+    { "code": "longShots", "nameVi": "Sút xa", "category": "outfield" },
+    { "code": "positioning", "nameVi": "Chọn vị trí", "category": "outfield" },
+    { "code": "volleys", "nameVi": "Vô-lê", "category": "outfield" },
+    { "code": "penalties", "nameVi": "Penalty", "category": "outfield" },
+    { "code": "shortPass", "nameVi": "Ch.ngắn", "category": "outfield" },
+    { "code": "vision", "nameVi": "Tầm nhìn", "category": "outfield" },
+    { "code": "crossing", "nameVi": "Tạt bóng", "category": "outfield" },
+    { "code": "longPass", "nameVi": "Ch.dài", "category": "outfield" },
+    { "code": "fkAccuracy", "nameVi": "Đá phạt", "category": "outfield" },
+    { "code": "curve", "nameVi": "Sút xoáy", "category": "outfield" },
+    { "code": "dribbling", "nameVi": "Rê bóng", "category": "outfield" },
+    { "code": "ballControl", "nameVi": "Giữ bóng", "category": "outfield" },
+    { "code": "agility", "nameVi": "Khéo léo", "category": "outfield" },
+    { "code": "balance", "nameVi": "Thăng bằng", "category": "outfield" },
+    { "code": "reactions", "nameVi": "Phản ứng", "category": "outfield" },
+    { "code": "marking", "nameVi": "Kèm người", "category": "outfield" },
+    { "code": "interceptions", "nameVi": "Lấy bóng", "category": "outfield" },
+    { "code": "standingTackle", "nameVi": "Cắt bóng", "category": "outfield" },
+    { "code": "slidingTackle", "nameVi": "Đánh đầu", "category": "outfield" },
+    { "code": "heading", "nameVi": "Xoạc bóng", "category": "outfield" },
+    { "code": "strength", "nameVi": "Sức mạnh", "category": "outfield" },
+    { "code": "stamina", "nameVi": "Thể lực", "category": "outfield" },
+    { "code": "aggression", "nameVi": "Quyết đoán", "category": "outfield" },
+    { "code": "jumping", "nameVi": "Nhảy", "category": "outfield" },
+    { "code": "composure", "nameVi": "Bình tĩnh", "category": "outfield" },
+    { "code": "reflexes", "nameVi": "Phản xạ", "category": "goalkeeper" },
+    { "code": "handling", "nameVi": "Xử lý bóng", "category": "goalkeeper" },
+    { "code": "diving", "nameVi": "Cửng cố", "category": "goalkeeper" },
+    { "code": "gkPositioning", "nameVi": "Vị trí TM", "category": "goalkeeper" },
+    { "code": "kicking", "nameVi": "Đá bóng", "category": "goalkeeper" },
+    { "code": "throwing", "nameVi": "Ném bóng", "category": "goalkeeper" },
+    { "code": "rushing", "nameVi": "Ra góc", "category": "goalkeeper" },
+    { "code": "oneOnOnes", "nameVi": "1vs1", "category": "goalkeeper" },
+    { "code": "aerial", "nameVi": "Bóng cao", "category": "goalkeeper" },
+    { "code": "command", "nameVi": "Chỉ huy", "category": "goalkeeper" },
+    { "code": "communication", "nameVi": "Giao tiếp", "category": "goalkeeper" },
+    { "code": "penaltySaving", "nameVi": "Cháy lu", "category": "goalkeeper" }
+  ]
+}

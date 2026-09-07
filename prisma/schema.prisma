@@ -1,0 +1,111 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Position {
+  id            String   @id @default(cuid())
+  code          String   @unique
+  nameVi        String
+  groupLabel    String?
+  weights       PositionStatWeight[]
+  primaryPlayers     Player[] @relation("PrimaryPosition")
+  secondaryPlayers   Player[] @relation("SecondaryPosition")
+  trainingPlans      TrainingPlan[]
+}
+
+model Season {
+  id             String   @id @default(cuid())
+  code           String   @unique
+  nameVi         String
+  sourceSiteCode String?
+  releasedAt     DateTime?
+  players        Player[]
+  weights        PositionStatWeight[]
+}
+
+model Stat {
+  id       String   @id @default(cuid())
+  code     String   @unique
+  nameVi   String
+  category String   // "outfield" | "goalkeeper"
+  weights  PositionStatWeight[]
+  playerValues PlayerStatValue[]
+}
+
+model PositionStatWeight {
+  id         String   @id @default(cuid())
+  positionId String
+  seasonId   String?
+  statCode   String
+  weight     Int
+
+  position   Position @relation(fields: [positionId], references: [id], onDelete: Cascade)
+  season     Season?  @relation(fields: [seasonId], references: [id], onDelete: Cascade)
+  stat       Stat     @relation(fields: [statCode], references: [code], onDelete: Cascade)
+
+  @@unique([positionId, seasonId, statCode])
+  @@index([positionId])
+  @@index([seasonId])
+}
+
+model Player {
+  id                 String   @id @default(cuid())
+  externalId         String   @unique // pid from fifaaddict
+  name               String
+  seasonId           String
+  primaryPositionId  String
+  secondaryPositionId String?
+  sourceUrl          String?
+  lastSyncedAt       DateTime?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  season             Season   @relation(fields: [seasonId], references: [id], onDelete: Cascade)
+  primaryPosition    Position @relation("PrimaryPosition", fields: [primaryPositionId], references: [id], onDelete: Cascade)
+  secondaryPosition  Position? @relation("SecondaryPosition", fields: [secondaryPositionId], references: [id], onDelete: SetNull)
+  statValues         PlayerStatValue[]
+  trainingPlans      TrainingPlan[]
+}
+
+model PlayerStatValue {
+  id        String @id @default(cuid())
+  playerId  String
+  statCode  String
+  baseValue Int
+
+  player    Player @relation(fields: [playerId], references: [id], onDelete: Cascade)
+  stat      Stat   @relation(fields: [statCode], references: [code], onDelete: Cascade)
+
+  @@unique([playerId, statCode])
+  @@index([playerId])
+}
+
+model TrainingPlan {
+  id               String   @id @default(cuid())
+  playerId         String
+  positionId       String
+  baseOvr          Int
+  optimizedOvr     Int
+  trainingsUsed    Int
+  createdAt        DateTime @default(now())
+
+  player           Player   @relation(fields: [playerId], references: [id], onDelete: Cascade)
+  position         Position @relation(fields: [positionId], references: [id], onDelete: Cascade)
+  items            TrainingPlanItem[]
+}
+
+model TrainingPlanItem {
+  id             String       @id @default(cuid())
+  trainingPlanId String
+  statCode       String
+  pointsAdded    Int
+
+  trainingPlan   TrainingPlan @relation(fields: [trainingPlanId], references: [id], onDelete: Cascade)
+
+  @@unique([trainingPlanId, statCode])
+}

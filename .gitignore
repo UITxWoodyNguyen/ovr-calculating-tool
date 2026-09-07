@@ -1,0 +1,6 @@
+# Skip .opencode folder
+.opencode
+.opencode/
+*.opencode
+
+~
