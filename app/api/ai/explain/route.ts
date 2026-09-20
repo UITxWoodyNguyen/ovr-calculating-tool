@@ -1,12 +1,11 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
-import Anthropic from '@anthropic-ai/sdk';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 import { optimizeTraining } from '@/lib/optimizer/optimizer';
 import { prisma } from '@/lib/prisma';
 
-const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
-});
+const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY!);
+const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
 const bodySchema = z.object({
   statValues: z.array(z.object({
@@ -106,14 +105,13 @@ Hãy giải thích bằng tiếng Việt tự nhiên, dễ hiểu.`;
       ? `Người dùng hỏi: "${question}". Hãy trả lời dựa trên dữ liệu trên.`
       : 'Hãy giải thích tại sao phương án đào tạo này là tối ưu, và tại sao không chọn các chỉ số khác.';
 
-    const response = await anthropic.messages.create({
-      model: 'claude-3-haiku-20240307',
-      max_tokens: 1000,
-      system: systemPrompt,
-      messages: [{ role: 'user', content: userPrompt }],
+    const result = await model.generateContent({
+      systemInstruction: systemPrompt,
+      contents: [{ role: 'user', parts: [{ text: userPrompt }] }],
+      generationConfig: { maxOutputTokens: 1000 },
     });
 
-    const text = response.content[0].type === 'text' ? response.content[0].text : '';
+    const text = result.response.text();
 
     return NextResponse.json({ explanation: text });
   } catch (error) {
