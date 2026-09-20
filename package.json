@@ -11,11 +11,11 @@
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
     "db:migrate": "prisma migrate dev",
-    "db:seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts",
+    "db:seed": "ts-node --esm prisma/seed.ts",
     "db:studio": "prisma studio",
     "test": "jest",
     "test:watch": "jest --watch",
-    "ingest:players": "ts-node --compiler-options {\"module\":\"CommonJS\"} scripts/ingest/players.ts"
+    "ingest:players": "ts-node --esm scripts/ingest/players.ts"
   },
   "dependencies": {
     "@google/genai": "^2.23.0",

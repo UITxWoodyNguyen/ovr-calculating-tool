@@ -14,17 +14,42 @@ interface PlayerData {
   sourceUrl: string;
 }
 
+function parseCSVLine(line: string): string[] {
+  const result: string[] = [];
+  let current = '';
+  let inQuotes = false;
+  
+  for (let i = 0; i < line.length; i++) {
+    const char = line[i];
+    if (char === '"') {
+      if (inQuotes && line[i + 1] === '"') {
+        current += '"';
+        i++;
+      } else {
+        inQuotes = !inQuotes;
+      }
+    } else if (char === ',' && !inQuotes) {
+      result.push(current.trim());
+      current = '';
+    } else {
+      current += char;
+    }
+  }
+  result.push(current.trim());
+  return result;
+}
+
 async function ingestFromCSV(csvPath: string) {
   console.log(`📥 Reading CSV from ${csvPath}...`);
   
   const content = fs.readFileSync(csvPath, 'utf-8');
   const lines = content.trim().split('\n');
-  const headers = lines[0].split(',').map(h => h.trim());
+  const headers = parseCSVLine(lines[0]);
   
   const players: PlayerData[] = [];
   
   for (let i = 1; i < lines.length; i++) {
-    const values = lines[i].split(',').map(v => v.trim());
+    const values = parseCSVLine(lines[i]);
     const row: Record<string, string> = {};
     headers.forEach((h, idx) => row[h] = values[idx] || '');
     
@@ -73,13 +98,23 @@ async function upsertPlayer(data: PlayerData) {
     return;
   }
 
+  let secondaryPositionId: string | null = null;
+  if (data.secondaryPositions.length > 0) {
+    const secondaryPosition = await prisma.position.findUnique({
+      where: { code: data.secondaryPositions[0] },
+    });
+    if (secondaryPosition) {
+      secondaryPositionId = secondaryPosition.id;
+    }
+  }
+
   const player = await prisma.player.upsert({
     where: { externalId: data.externalId },
     update: {
       name: data.name,
       seasonId: season.id,
       primaryPositionId: position.id,
-      secondaryPositionId: data.secondaryPositions[0] || null,
+      secondaryPositionId,
       sourceUrl: data.sourceUrl,
       lastSyncedAt: new Date(),
     },
@@ -88,7 +123,7 @@ async function upsertPlayer(data: PlayerData) {
       name: data.name,
       seasonId: season.id,
       primaryPositionId: position.id,
-      secondaryPositionId: data.secondaryPositions[0] || null,
+      secondaryPositionId,
       sourceUrl: data.sourceUrl,
       lastSyncedAt: new Date(),
     },

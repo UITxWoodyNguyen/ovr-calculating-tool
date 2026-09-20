@@ -8,19 +8,19 @@ datasource db {
 }
 
 model Position {
-  id            String   @id @default(cuid())
-  code          String   @unique
-  nameVi        String
-  groupLabel    String?
-  weights       PositionStatWeight[]
-  primaryPlayers     Player[] @relation("PrimaryPosition")
-  secondaryPlayers   Player[] @relation("SecondaryPosition")
-  trainingPlans      TrainingPlan[]
+  id               String               @id @default(cuid())
+  code             String               @unique
+  nameVi           String
+  groupLabel       String?
+  primaryPlayers   Player[]             @relation("PrimaryPosition")
+  secondaryPlayers Player[]             @relation("SecondaryPosition")
+  weights          PositionStatWeight[]
+  trainingPlans    TrainingPlan[]
 }
 
 model Season {
-  id             String   @id @default(cuid())
-  code           String   @unique
+  id             String               @id @default(cuid())
+  code           String               @unique
   nameVi         String
   sourceSiteCode String?
   releasedAt     DateTime?
@@ -29,12 +29,12 @@ model Season {
 }
 
 model Stat {
-  id       String   @id @default(cuid())
-  code     String   @unique
-  nameVi   String
-  category String   // "outfield" | "goalkeeper"
-  weights  PositionStatWeight[]
+  id           String               @id @default(cuid())
+  code         String               @unique
+  nameVi       String
+  category     String
   playerValues PlayerStatValue[]
+  weights      PositionStatWeight[]
 }
 
 model PositionStatWeight {
@@ -43,7 +43,6 @@ model PositionStatWeight {
   seasonId   String?
   statCode   String
   weight     Int
-
   position   Position @relation(fields: [positionId], references: [id], onDelete: Cascade)
   season     Season?  @relation(fields: [seasonId], references: [id], onDelete: Cascade)
   stat       Stat     @relation(fields: [statCode], references: [code], onDelete: Cascade)
@@ -54,22 +53,21 @@ model PositionStatWeight {
 }
 
 model Player {
-  id                 String   @id @default(cuid())
-  externalId         String   @unique // pid from fifaaddict
-  name               String
-  seasonId           String
-  primaryPositionId  String
+  id                  String            @id @default(cuid())
+  externalId          String            @unique
+  name                String
+  seasonId            String
+  primaryPositionId   String
   secondaryPositionId String?
-  sourceUrl          String?
-  lastSyncedAt       DateTime?
-  createdAt          DateTime @default(now())
-  updatedAt          DateTime @updatedAt
-
-  season             Season   @relation(fields: [seasonId], references: [id], onDelete: Cascade)
-  primaryPosition    Position @relation("PrimaryPosition", fields: [primaryPositionId], references: [id], onDelete: Cascade)
-  secondaryPosition  Position? @relation("SecondaryPosition", fields: [secondaryPositionId], references: [id], onDelete: SetNull)
-  statValues         PlayerStatValue[]
-  trainingPlans      TrainingPlan[]
+  sourceUrl           String?
+  lastSyncedAt        DateTime?
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+  primaryPosition     Position          @relation("PrimaryPosition", fields: [primaryPositionId], references: [id], onDelete: Cascade)
+  season              Season            @relation(fields: [seasonId], references: [id], onDelete: Cascade)
+  secondaryPosition   Position?         @relation("SecondaryPosition", fields: [secondaryPositionId], references: [id])
+  statValues          PlayerStatValue[]
+  trainingPlans       TrainingPlan[]
 }
 
 model PlayerStatValue {
@@ -77,7 +75,6 @@ model PlayerStatValue {
   playerId  String
   statCode  String
   baseValue Int
-
   player    Player @relation(fields: [playerId], references: [id], onDelete: Cascade)
   stat      Stat   @relation(fields: [statCode], references: [code], onDelete: Cascade)
 
@@ -86,17 +83,16 @@ model PlayerStatValue {
 }
 
 model TrainingPlan {
-  id               String   @id @default(cuid())
-  playerId         String
-  positionId       String
-  baseOvr          Int
-  optimizedOvr     Int
-  trainingsUsed    Int
-  createdAt        DateTime @default(now())
-
-  player           Player   @relation(fields: [playerId], references: [id], onDelete: Cascade)
-  position         Position @relation(fields: [positionId], references: [id], onDelete: Cascade)
-  items            TrainingPlanItem[]
+  id            String             @id @default(cuid())
+  playerId      String
+  positionId    String
+  baseOvr       Int
+  optimizedOvr  Int
+  trainingsUsed Int
+  createdAt     DateTime           @default(now())
+  player        Player             @relation(fields: [playerId], references: [id], onDelete: Cascade)
+  position      Position           @relation(fields: [positionId], references: [id], onDelete: Cascade)
+  items         TrainingPlanItem[]
 }
 
 model TrainingPlanItem {
@@ -104,7 +100,6 @@ model TrainingPlanItem {
   trainingPlanId String
   statCode       String
   pointsAdded    Int
-
   trainingPlan   TrainingPlan @relation(fields: [trainingPlanId], references: [id], onDelete: Cascade)
 
   @@unique([trainingPlanId, statCode])
