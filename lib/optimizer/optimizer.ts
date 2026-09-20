@@ -29,7 +29,7 @@ function generateCombinations(
 ): Candidate[] {
   const candidates: Candidate[] = [];
   const eligibleStats = stats
-    .filter(s => (weights[s.statCode] ?? 0) > 0)
+    .filter(s => (weights[s.statCode] ?? 0) > 0 && (s.value ?? 0) < 99)
     .sort((a, b) => (weights[b.statCode] ?? 0) - (weights[a.statCode] ?? 0));
 
   const statCodes = eligibleStats.map(s => s.statCode);

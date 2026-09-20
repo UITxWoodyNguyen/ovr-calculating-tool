@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { prisma } from '@/lib/prisma';
 
+export const dynamic = 'force-dynamic';
+
 const bodySchema = z.object({
   weights: z.record(z.string(), z.number().int().min(0).max(99)),
 });

@@ -59,8 +59,7 @@ describe('OVR Calculation', () => {
       expect(result).toBe(0);
     });
 
-    it('should match the example from documentation (140.11)', () => {
-      // This is the example from the OPENCODE.md where total weighted sum = 14011, total weight = 100
+    it('should match the example from documentation', () => {
       const stats = {
         stat1: 90, stat2: 85, stat3: 88, stat4: 86,
         stat5: 80, stat6: 75, stat7: 70, stat8: 72,
@@ -74,8 +73,8 @@ describe('OVR Calculation', () => {
       };
 
       const result = calculateOVRSimple(stats, weights);
-      // Weighted sum = 14011, Total weight = 100, OVR = round(140.11) = 140
-      expect(result).toBe(140);
+      // Weighted sum = 8089, Total weight = 100, OVR = round(80.89) = 81
+      expect(result).toBe(81);
     });
   });
 

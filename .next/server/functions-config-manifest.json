@@ -1,1 +1,1 @@
-{"version":1,"functions":{}}
+{"version":1,"functions":{"/api/players/[id]":{},"/api/positions/[code]/weights":{},"/api/admin/positions/[code]/weights":{},"/api/players":{}}}
